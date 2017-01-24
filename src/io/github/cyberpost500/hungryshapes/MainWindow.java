@@ -32,6 +32,10 @@ public class MainWindow extends JFrame {
                 g.setFont(new Font("Default", Font.PLAIN, 32));
                 g.setColor(Color.BLUE);
                 g.drawString("Hello, World!", 10, 40);
+
+                //In addition to the text, draw a circle on the screen
+                //drawArc(x, y, width, height, startAngle, arcAngle)
+                g.drawArc(100, 100, 50, 50, 0, 360);
             }
         });
 
