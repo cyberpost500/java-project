@@ -6,6 +6,9 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.Dimension;
+import java.awt.Rectangle;
+
 import io.github.cyberpost500.hungryshapes.shapes.Circle;
 import io.github.cyberpost500.hungryshapes.shapes.MovingShape;
 import io.github.cyberpost500.hungryshapes.shapes.Shape;
@@ -40,7 +43,7 @@ public class MainWindow extends JFrame {
     public static void main(String[] args) {
         final Shape circle = new Circle(125, 125, 50, Color.RED, true);
         final MainWindow window = new MainWindow();
-        final MovingShape moving = new MovingShape(0, 0, 50, 3, 3, Color.GREEN, true, dimensionToRectangle(window.getSize()));
+        final MovingShape moving = new MovingShape(100, 100, 50, 3, 3, Color.GREEN, true, dimensionToRectangle(window.getSize()));
         final JPanel panel = new JPanel(true) {
             @Override
             public void paintComponent(Graphics g) {
@@ -52,6 +55,7 @@ public class MainWindow extends JFrame {
 
                 circle.draw(g);
                 g.drawArc(100, 100, 50, 50, 0, 360);
+                moving.draw(g);
             }
         };
         window.getContentPane().add(panel);

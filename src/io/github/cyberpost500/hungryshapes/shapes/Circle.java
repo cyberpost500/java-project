@@ -33,8 +33,6 @@ public class Circle implements Shape {
         Color previous = graphics.getColor();
         graphics.setColor(color);
         if (solid) {
-            System.out.println(String.format("x: %d y: %d size: %d", realX, realY, size));
-            System.out.println(String.format("off x: %d y: %d", getX(), getY(), size));
             graphics.fillArc(realX, realY, size, size, 0, 360);
         } else {
             graphics.drawArc(realX, realY, size, size, 0, 360);
@@ -77,7 +75,7 @@ public class Circle implements Shape {
         return solid;
     }
 
-    public boolean setSolid(boolean value) {
+    public void setSolid(boolean value) {
         this.solid = value;
     }
 }

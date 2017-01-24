@@ -26,15 +26,36 @@ public class MovingShape extends Circle {
         setSize(size);
     }
 
+    public void enforceBounds() {
+        final int currentX = (int) getX();
+        final int currentY = (int) getY();
+        final Rectangle bounds = getBounds();
+        final int left = (int) bounds.getX();
+        final int top = (int) bounds.getY();
+        final int right = left + (int) bounds.getWidth();
+        final int bottom = top + (int) bounds.getHeight();
+
+        if (currentX < left) {
+            setX(left);
+        }
+        if (currentX > right) {
+            setX(right);
+        }
+        if (currentY < top) {
+            setY(top);
+        }
+        if (currentY > bottom) {
+            setY(bottom);
+        }
+    }
+
     public void move() {
         final int newX = getX()+getDx();
         final int newY = getY()+getDy();
-        if (bounds.contains(newX, getY())) {
-            setX(newX);
-        }
-        if (bounds.contains(getX(), newY)) {
-            setY(newY);
-        }
+        setX(newX);
+        setY(newY);
+        enforceBounds();
+        System.out.println(this);
     }
 
     public void setDx(int dX) {
@@ -52,7 +73,6 @@ public class MovingShape extends Circle {
     public int getDy() {
         return dY;
     }
-
 
     public void setBounds(Rectangle bounds) {
         this.bounds = bounds;
