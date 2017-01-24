@@ -29,7 +29,7 @@
         description="Packages the compiled byte code into a java archive.">
         <jar basedir="${build}" destfile="${hellojar}">
             <manifest>
-                <attribute name="Main-Class" value="io.github.cyberpost500.helloworld.HelloWorld"/>
+                <attribute name="Main-Class" value="io.github.cyberpost500.hungryshapes.MainWindow"/>
             </manifest>
         </jar>
     </target>
