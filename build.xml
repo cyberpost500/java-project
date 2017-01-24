@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="Hello, World!" default="build">
+    <description>
+        This is a simple hello world project that illustrates the use of a
+        "build.xml" file for easing development tasks.
+    </description>
+
+    <property name="build" location="build"/>
+    <property name="src"  location="src"/>
+    <property name="dist" location="jars"/>
+    <property name="docs" location="docs"/>
+    <property name="hellojar" location="${dist}/helloworld.jar"/>
+
+    <path id="run.path">
+        <fileset dir="${build}"/>
+    </path>
+
+    <target name="init">
+        <mkdir dir="${build}" />
+        <mkdir dir="${docs}" />
+    </target>
+
+    <target name="build" depends="init"
+        description="Compiles everything needed for this project to be run.">
+        <javac srcdir="${src}" destdir="${build}" includeAntRuntime="false"/>
+    </target>
+
+    <target name="jar" depends="build"
+        description="Packages the compiled byte code into a java archive.">
+        <jar basedir="${build}" destfile="${hellojar}">
+            <manifest>
+                <attribute name="Main-Class" value="io.github.cyberpost500.helloworld.HelloWorld"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run" depends="jar"
+        description="Convenience target for running the project.">
+        <java jar="${hellojar}" fork="true"/>
+    </target>
+
+    <target name="docs" depends="init"
+        description="Generates documentation">
+        <javadoc sourcepath="${src}" destdir="${docs}"/>
+    </target>
+
+    <target name="clean"
+        description="Cleans up all generated or compiled content.">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+        <delete dir="${docs}"/>
+    </target>
+
+</project>
