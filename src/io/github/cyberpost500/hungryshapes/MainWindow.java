@@ -1,10 +1,14 @@
 package io.github.cyberpost500.hungryshapes;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import io.github.cyberpost500.hungryshapes.shapes.Circle;
+import io.github.cyberpost500.hungryshapes.shapes.Shape;
+
 /**
  * This class defines a very simple JFrame that will later become the game's
  * main window.
@@ -23,22 +27,25 @@ public class MainWindow extends JFrame {
         setSize(800, 600);
     }
 
+
     public static void main(String[] args) {
+        final Shape circle = new Circle(125, 125, 50, Color.RED, true);
         final MainWindow window = new MainWindow();
-        window.getContentPane().add(new JPanel(true) {
+        final JPanel panel = new JPanel(true) {
             @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
+
                 g.setFont(new Font("Default", Font.PLAIN, 32));
                 g.setColor(Color.BLUE);
                 g.drawString("Hello, World!", 10, 40);
 
-                //In addition to the text, draw a circle on the screen
-                //drawArc(x, y, width, height, startAngle, arcAngle)
+                circle.draw(g);
                 g.drawArc(100, 100, 50, 50, 0, 360);
             }
-        });
-
+        };
+        window.getContentPane().add(panel);
         window.setVisible(true);
     }
 }
+
