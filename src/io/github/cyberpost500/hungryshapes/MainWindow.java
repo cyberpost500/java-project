@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
+import io.github.cyberpost500.hungryshapes.shapes.BouncingShape;
 import io.github.cyberpost500.hungryshapes.shapes.Circle;
 import io.github.cyberpost500.hungryshapes.shapes.MovingShape;
 import io.github.cyberpost500.hungryshapes.shapes.Shape;
@@ -44,6 +45,7 @@ public class MainWindow extends JFrame {
         final Shape circle = new Circle(125, 125, 50, Color.RED, true);
         final MainWindow window = new MainWindow();
         final MovingShape moving = new MovingShape(100, 100, 50, 3, 3, Color.GREEN, true, dimensionToRectangle(window.getSize()));
+        final BouncingShape bouncing = new BouncingShape(125, 100, 50, 3, 3, Color.YELLOW, true, dimensionToRectangle(window.getSize()));
         final JPanel panel = new JPanel(true) {
             @Override
             public void paintComponent(Graphics g) {
@@ -56,6 +58,7 @@ public class MainWindow extends JFrame {
                 circle.draw(g);
                 g.drawArc(100, 100, 50, 50, 0, 360);
                 moving.draw(g);
+                bouncing.draw(g);
             }
         };
         window.getContentPane().add(panel);
@@ -67,9 +70,7 @@ public class MainWindow extends JFrame {
             @Override
             public void update() {
                 moving.move();
-                //If you want some feedback while debugging modifications, you
-                //can uncomment the next line.
-                //System.out.println("moved; " + moving);
+                bouncing.move();
             }
         };
         final Thread moverThread = new Thread(mover);
