@@ -55,7 +55,6 @@ public class MovingShape extends Circle {
         setX(newX);
         setY(newY);
         enforceBounds();
-        System.out.println(this);
     }
 
     public void setDx(int dX) {
