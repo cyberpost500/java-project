@@ -77,7 +77,7 @@ public class Circle implements Shape {
         return solid;
     }
 
-    public boolean setSolid(boolean value) {
+    public void setSolid(boolean value) {
         this.solid = value;
     }
 }
